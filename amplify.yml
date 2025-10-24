@@ -15,8 +15,10 @@ backend:
         - source "$NVM_DIR/nvm.sh"
         - nvm install 20.9.0
         - nvm use 20.9.0
-        - nohup sudo dockerd > /tmp/dockerd.log 2>&1 &
-        - timeout 60 sh -c "until docker info >/dev/null 2>&1; do sleep 1; done"
+        - export DOCKER_HOST=unix:///var/run/docker.sock
+        - nohup /usr/local/bin/dockerd-entrypoint.sh > /tmp/dockerd.log 2>&1 &
+        - timeout 90 sh -c "until docker info >/dev/null 2>&1; do sleep 1; done"
+        - cat /tmp/dockerd.log
     build:
       commands:
         - source "$NVM_DIR/nvm.sh"
