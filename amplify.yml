@@ -15,8 +15,7 @@ backend:
         - source "$NVM_DIR/nvm.sh"
         - nvm install 20.9.0
         - nvm use 20.9.0
-        - dnf install -y docker
-        - nohup /usr/bin/dockerd --host=unix:///var/run/docker.sock > /tmp/dockerd.log 2>&1 &
+        - sudo service docker start
         - timeout 60 sh -c "until docker info >/dev/null 2>&1; do sleep 1; done"
     build:
       commands:
