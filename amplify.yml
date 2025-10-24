@@ -16,27 +16,27 @@ backend:
         - nvm install 20.9.0
         - nvm use 20.9.0
         - export DOCKER_HOST=unix:///var/run/docker.sock
-        - export DOCKERD_BIN=$(command -v dockerd || true)
-        - echo "Using dockerd binary: ${DOCKERD_BIN}"
         - |
+          bash <<'EOF'
+          set -euo pipefail
+          export DOCKERD_BIN="$(command -v dockerd || true)"
+          echo "Using dockerd binary: ${DOCKERD_BIN}"
           if [ -z "$DOCKERD_BIN" ]; then
-            echo "dockerd binary not found";
-            exit 1;
+            echo "dockerd binary not found"
+            exit 1
           fi
-        - nohup sudo "$DOCKERD_BIN" --host=unix:///var/run/docker.sock > /tmp/dockerd.log 2>&1 &
-        - |
+          nohup sudo "$DOCKERD_BIN" --host=unix:///var/run/docker.sock > /tmp/dockerd.log 2>&1 &
           for i in $(seq 1 90); do
             if docker info >/dev/null 2>&1; then
-              echo "Docker daemon is ready";
-              break;
+              echo "Docker daemon is ready"
+              exit 0
             fi
-            sleep 1;
-            if [ $i -eq 90 ]; then
-              echo "Docker failed to start. Dumping /tmp/dockerd.log:";
-              cat /tmp/dockerd.log;
-              exit 1;
-            fi
+            sleep 1
           done
+          echo "Docker failed to start. Dumping /tmp/dockerd.log"
+          cat /tmp/dockerd.log
+          exit 1
+          EOF
     build:
       commands:
         - source "$NVM_DIR/nvm.sh"
