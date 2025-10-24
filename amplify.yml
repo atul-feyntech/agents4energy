@@ -28,7 +28,6 @@ backend:
     paths:
       - .npm/**/*
       - node_modules/**/*
-  image: aws/codebuild/standard:7.0
 frontend:
   buildEnvironment:
     image: aws/codebuild/standard:7.0
