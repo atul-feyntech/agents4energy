@@ -1,5 +1,7 @@
 version: 1
 backend:
+  buildEnvironment:
+    image: aws/codebuild/standard:7.0
   phases:
     preBuild:
       commands:
@@ -28,6 +30,8 @@ backend:
       - node_modules/**/*
   image: aws/codebuild/standard:7.0
 frontend:
+  buildEnvironment:
+    image: aws/codebuild/standard:7.0
   phases:
     preBuild:
       commands:
