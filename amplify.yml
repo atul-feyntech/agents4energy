@@ -33,7 +33,7 @@ frontend:
         - export NVM_DIR="$HOME/.nvm"
         - source "$NVM_DIR/nvm.sh"
         - nvm use 20.9.0
-        - npx ampx generate outputs --outputs-format json --outputs-out-dir .
+        - npx ampx generate outputs --app-id $AWS_APP_ID --branch $AWS_BRANCH --format json --out-dir .
     build:
       commands:
         - npm run build
