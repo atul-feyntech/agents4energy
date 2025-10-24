@@ -1,5 +1,5 @@
 // import { BedrockAgent } from "@aws-sdk/client-bedrock-agent"
-import outputs from '@/../amplify_outputs.json';
+import outputs from '@/amplifyOutputs';
 
 type BaseAgent = {
     name: string
