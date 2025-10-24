@@ -15,34 +15,11 @@ backend:
         - source "$NVM_DIR/nvm.sh"
         - nvm install 20.9.0
         - nvm use 20.9.0
-        - export DOCKER_HOST=unix:///var/run/docker.sock
-        - |
-          bash <<'EOF'
-          set -euo pipefail
-          export DOCKERD_BIN="$(command -v dockerd || true)"
-          echo "Using dockerd binary: ${DOCKERD_BIN}"
-          if [ -z "$DOCKERD_BIN" ]; then
-            echo "dockerd binary not found"
-            exit 1
-          fi
-          nohup sudo "$DOCKERD_BIN" --host=unix:///var/run/docker.sock > /tmp/dockerd.log 2>&1 &
-          for i in $(seq 1 90); do
-            if docker info >/dev/null 2>&1; then
-              echo "Docker daemon is ready"
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "Docker failed to start. Dumping /tmp/dockerd.log"
-          cat /tmp/dockerd.log
-          exit 1
-          EOF
     build:
       commands:
         - source "$NVM_DIR/nvm.sh"
         - nvm use 20.9.0
         - npm ci --cache .npm --prefer-offline
-        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
   cache:
     paths:
       - .npm/**/*
