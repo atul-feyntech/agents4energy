@@ -17,8 +17,17 @@ backend:
         - nvm use 20.9.0
         - export DOCKER_HOST=unix:///var/run/docker.sock
         - nohup /usr/local/bin/dockerd-entrypoint.sh > /tmp/dockerd.log 2>&1 &
-        - timeout 90 sh -c "until docker info >/dev/null 2>&1; do sleep 1; done"
-        - cat /tmp/dockerd.log
+        - |
+          for i in $(seq 1 90); do
+            if docker info >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+            if [ $i -eq 90 ]; then
+              cat /tmp/dockerd.log
+              exit 1
+            fi
+          done
     build:
       commands:
         - source "$NVM_DIR/nvm.sh"
