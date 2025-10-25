@@ -41,8 +41,8 @@ export const defaultAgents: { [key: string]: BaseAgent | BedrockAgent | LangGrap
     MaintenanceAgent: {
         name: "Maintenance Agent",
         source: "bedrockAgent",
-        agentId: outputs.custom.maintenanceAgentId,
-        agentAliasId: outputs.custom.maintenanceAgentAliasId,
+        agentId: (outputs as any).custom.maintenanceAgentId,
+        agentAliasId: (outputs as any).custom.maintenanceAgentAliasId,
         samplePrompts: [
             "How many tanks are in my biodiesel unit?",
             "In September 2024, what are a few key incidents and actions taken at the biodiesel unit?",
@@ -51,8 +51,8 @@ export const defaultAgents: { [key: string]: BaseAgent | BedrockAgent | LangGrap
     RegulatoryAgent: {
         name: "Regulatory Agent",
         source: "bedrockAgent",
-        agentId: outputs.custom.regulatoryAgentId,
-        agentAliasId: outputs.custom.regulatoryAgentAliasId,
+        agentId: (outputs as any).custom.regulatoryAgentId,
+        agentAliasId: (outputs as any).custom.regulatoryAgentAliasId,
         samplePrompts: [
             "What are the requirements for fugitive emissions monitoring and reporting in the U.S.?",
             "What are the requirements for decomissioning an offshore oil well in Brazil?",
@@ -61,8 +61,8 @@ export const defaultAgents: { [key: string]: BaseAgent | BedrockAgent | LangGrap
     PetrophysicsAgent: {
         name: "Petrophysics Agent",
         source: "bedrockAgent",
-        agentId: outputs.custom.petrophysicsAgentId,
-        agentAliasId: outputs.custom.petrophysicsAgentAliasId,
+        agentId: (outputs as any).custom.petrophysicsAgentId,
+        agentAliasId: (outputs as any).custom.petrophysicsAgentAliasId,
         samplePrompts: [
             "Give me a summary fluid substitution modeling",
             "Give me the inputs of Gassmann equation",
