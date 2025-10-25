@@ -3,7 +3,7 @@ import path from 'path';
 
 const outputsPath = path.resolve(__dirname, '../amplify_outputs.json');
 
-let outputs: any = {};
+let outputs: Record<string, unknown> = {};
 
 if (fs.existsSync(outputsPath)) {
   try {
