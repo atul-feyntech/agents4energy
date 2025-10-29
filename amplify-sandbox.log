@@ -1,0 +1,201 @@
+[INFO] 2025-10-29T12:05:59.319Z:   
+  Amplify Sandbox
+  
+[INFO] 2025-10-29T12:05:59.320Z:   Identifier: 	atulchavan
+[INFO] 2025-10-29T12:05:59.320Z:   Stack: 	amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8
+[INFO] 2025-10-29T12:05:59.320Z:   
+  To specify a different sandbox identifier, use --identifier
+[DEBUG] 2025-10-29T12:05:59.328Z: [Sandbox] Executing command `deploy`
+[DEBUG] 2025-10-29T12:06:03.330Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/function/invoke-bedrock-agent-lambda/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:03.666Z: 
+  ...5f65254118fb0216694ab09aa2331961758a32832ff48-building/index.mjs  1.3mb ⚠️
+  ...254118fb0216694ab09aa2331961758a32832ff48-building/index.mjs.map  5.7mb
+
+⚡ Done in 160ms
+
+[DEBUG] 2025-10-29T12:06:03.727Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/function/get-structured-output-lambda/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:04.008Z: 
+  ...0ae75f59276a98905f95f8569a9b27beb6703b2203baf-building/index.mjs  1.5mb ⚠️
+  ...5f59276a98905f95f8569a9b27beb6703b2203baf-building/index.mjs.map  6.2mb
+
+⚡ Done in 116ms
+
+[DEBUG] 2025-10-29T12:06:04.023Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/function/production-agent-function-lambda/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:04.366Z: 
+  ...5730a2314a57bb14f223800f3153f694df84a1b2a06b-building/index.mjs   2.5mb ⚠️
+  ...a2314a57bb14f223800f3153f694df84a1b2a06b-building/index.mjs.map  10.3mb
+
+⚡ Done in 180ms
+
+[DEBUG] 2025-10-29T12:06:04.392Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/function/plan-and-execute-agent-lambda/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:04.706Z: 
+  ...af30a6ee4bc01e7b27cfaa6b0d9e949eb45b3c69cdd50-building/index.mjs  2.1mb ⚠️
+  ...a6ee4bc01e7b27cfaa6b0d9e949eb45b3c69cdd50-building/index.mjs.map  8.9mb
+
+⚡ Done in 146ms
+
+[DEBUG] 2025-10-29T12:06:04.756Z: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+
+[DEBUG] 2025-10-29T12:06:04.756Z: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+
+[DEBUG] 2025-10-29T12:06:04.756Z: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+
+[DEBUG] 2025-10-29T12:06:04.756Z: Be careful when using @auth directives on a field in a root type. @auth directives on field definitions use the source object to perform authorization logic and the source will be an empty object for fields on root types. Static group authorization should perform as expected.
+
+[DEBUG] 2025-10-29T12:06:04.828Z: WARNING: owners may reassign ownership for the following model(s) and role(s): ChatSession: [owner], ChatMessage: [owner]. If this is not intentional, you may want to apply field-level authorization rules to these fields. To read more: https://docs.amplify.aws/cli/graphql/authorization-rules/#per-user--owner-based-data-access.
+
+[DEBUG] 2025-10-29T12:06:04.855Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/function/preSignUp-lambda/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:05.022Z: 
+  ...de90dc98675bee6081a1a66af867420121112656832f8f8-building/index.mjs  3.1kb
+  ...dc98675bee6081a1a66af867420121112656832f8f8-building/index.mjs.map  1.7kb
+
+⚡ Done in 2ms
+
+[DEBUG] 2025-10-29T12:06:05.191Z: Production Stack UUID:  eec
+
+Production Stack UUID:  eec
+[DEBUG] 2025-10-29T12:06:05.191Z: Bundling asset amplify-agentsforenergy-atulchavan-sandbox-755c3d09a8/prodAgentStack/ConvertPdfToYamlFunction/Code/Stage...
+
+[DEBUG] 2025-10-29T12:06:05.440Z: 
+  ...ee1c173dd1b728f93b7afab716b3a01a9280fd1138fc3c-building/index.js  1.8mb ⚠️
+  ...173dd1b728f93b7afab716b3a01a9280fd1138fc3c-building/index.js.map  6.4mb
+
+⚡ Done in 88ms
+
+[DEBUG] 2025-10-29T12:06:05.955Z: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+
+[DEBUG] 2025-10-29T12:06:05.955Z: #1 transferring dockerfile: 839B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for public.ecr.aws/sam/build-python3.12:1
+
+[DEBUG] 2025-10-29T12:06:07.607Z: #2 ...
+
+#3 [auth] aws:: sam/build-python3.12:pull token for public.ecr.aws
+#3 DONE 0.0s
+
+[DEBUG] 2025-10-29T12:06:07.758Z: 
+#2 [internal] load metadata for public.ecr.aws/sam/build-python3.12:1
+
+[DEBUG] 2025-10-29T12:06:09.449Z: #2 ERROR: unexpected status from HEAD request to https://public.ecr.aws/v2/sam/build-python3.12/manifests/1: 403 Forbidden
+
+[DEBUG] 2025-10-29T12:06:09.479Z: ------
+ > [internal] load metadata for public.ecr.aws/sam/build-python3.12:1:
+------
+
+[DEBUG] 2025-10-29T12:06:09.485Z: Dockerfile:14
+--------------------
+  12 |     #
+  13 |     
+  14 | >>> FROM public.ecr.aws/sam/build-python3.12:1
+  15 |     
+  16 |     RUN mkdir /asset
+--------------------
+
+[DEBUG] 2025-10-29T12:06:09.486Z: ERROR: failed to build: failed to solve: public.ecr.aws/sam/build-python3.12:1: failed to resolve source metadata for public.ecr.aws/sam/build-python3.12:1: unexpected status from HEAD request to https://public.ecr.aws/v2/sam/build-python3.12/manifests/1: 403 Forbidden
+
+[DEBUG] 2025-10-29T12:06:09.496Z: /Users/atulchavan/Repository/agents4energy/node_modules/aws-cdk-lib/core/lib/private/asset-staging.js:2
+`).map((line,idx)=>`${idx===0?firstLine:padding}${line}`)};const reason=proc.signal!=null?`signal ${proc.signal}`:`status ${proc.status}`,command=[prog,...args.map(arg=>/[^a-z0-9_-]/i.test(arg)?JSON.stringify(arg):arg)].join(" ");throw new Error([`${prog} exited with ${reason}`,...prependLines("--> STDOUT:  ",proc.stdout)??[],...prependLines("--> STDERR:  ",proc.stderr)??[],`--> Command: ${command}`].join(`
+                                                                                                                                                                                                                                            ^
+
+Error: docker exited with status 1
+--> Command: docker build -t cdk-643c9af132a1667621d70a8efe10135df9ba5b6211dd305dec36814ce2d22c8a "/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/lambda/opensearch-serverless-custom-resources"
+    at dockerExec (/Users/atulchavan/Repository/agents4energy/node_modules/aws-cdk-lib/core/lib/private/asset-staging.js:2:237)
+    at DockerImage.fromBuild (/Users/atulchavan/Repository/agents4energy/node_modules/aws-cdk-lib/core/lib/bundling.js:1:4761)
+    at Code.fromDockerBuild (/Users/atulchavan/Repository/agents4energy/node_modules/aws-cdk-lib/aws-lambda/lib/code.js:5:531)
+    at CRProvider (/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/src/common/helpers/custom-resource-provider-helper.ts:117:27)
+    at Function.getProvider (/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/src/common/helpers/custom-resource-provider-helper.ts:99:14)
+    at VectorIndex (/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/src/cdk-lib/opensearch-vectorindex/vector-index.ts:190:50)
+    at KnowledgeBase (/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/src/cdk-lib/bedrock/knowledge-base.ts:516:28)
+    at productionAgentBuilder (/Users/atulchavan/Repository/agents4energy/amplify/agents/production/productionAgent.ts:333:47)
+    at <anonymous> (/Users/atulchavan/Repository/agents4energy/amplify/backend.ts:206:5)
+    at ModuleJob.run (node:internal/modules/esm/module_job:217:25)
+
+Node.js v20.9.0
+
+[DEBUG] 2025-10-29T12:06:09.521Z: [31mSubprocess exited with error 1[39m
+
+[DEBUG] 2025-10-29T12:06:09.761Z: {
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "es2022",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "paths": {
+            "$amplify/*": [
+                "../.amplify/generated/*"
+            ]
+        },
+        "allowSyntheticDefaultImports": true,
+        "resolvePackageJsonExports": true,
+        "resolvePackageJsonImports": true,
+        "useDefineForClassFields": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "strictBuiltinIteratorReturn": true,
+        "alwaysStrict": true,
+        "useUnknownInCatchVariables": true
+    },
+    "files": [
+        "./backend.ts",
+        "./agents/maintenance/maintenanceAgent.ts",
+        "./agents/petrophysics/petrophysics.ts",
+        "./agents/petrophysicsAgent/petrophysicsAgent.ts",
+        "./agents/production/productionAgent.ts",
+        "./agents/regulatory/regulatoryAgent.ts",
+        "./auth/resource.ts",
+        "./constructs/bedrockKnoledgeBase.ts",
+        "./constructs/bedrockKnowledgeBase.ts",
+        "./custom/appConfigurator.ts",
+        "./custom/cdkNagHandler.ts",
+        "./data/resource.ts",
+        "./env/get-structured-output.ts",
+        "./functions/addIamDirectiveToAllAssets.ts",
+        "./functions/getStructuredOutputFromLangchain.ts",
+        "./functions/invokeBedrockAgent.ts",
+        "./functions/configureProdDb/index.ts",
+        "./functions/configureProdDb/sqlStatements.ts",
+        "./functions/convertPdfToYaml/index.ts",
+        "./functions/graphql/API.ts",
+        "./functions/graphql/mutations.ts",
+        "./functions/graphql/queries.ts",
+        "./functions/graphql/subscriptions.ts",
+        "./functions/planAndExecuteAgent/index.ts",
+        "./functions/planAndExecuteAgent/toolBox.ts",
+        "./functions/preSignUp/handler.ts",
+        "./functions/preSignUp/resource.ts",
+        "./functions/productionAgentFunction/index.ts",
+        "./functions/productionAgentFunction/toolBox.ts",
+        "./functions/recordTableDefAndStartKBIngestion/index.ts",
+        "./functions/utils/amplifyUtils.ts",
+        "./functions/utils/cdkUtils.ts",
+        "./functions/utils/pdfUtils.ts",
+        "./functions/utils/sdkUtils.ts",
+        "./storage/resource.ts"
+    ]
+}
+
+Unable to build the Amplify backend definition.
+Caused By: Error: docker exited with status 1
+--> Command: docker build -t cdk-643c9af132a1667621d70a8efe10135df9ba5b6211dd305dec36814ce2d22c8a "/Users/atulchavan/Repository/agents4energy/node_modules/@cdklabs/generative-ai-cdk-constructs/lambda/opensearch-serverless-custom-resources"
+
+Resolution: Check your backend definition in the `amplify` folder for syntax and type errors.
+
+[INFO] 2025-10-29T12:06:13.113Z: [Sandbox] Watching for file changes...
+[DEBUG] 2025-10-29T12:09:17.798Z: [Sandbox] Shutting down
+Stopping the sandbox process. To delete the sandbox, run npx ampx sandbox delete

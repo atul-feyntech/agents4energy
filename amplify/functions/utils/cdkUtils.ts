@@ -14,8 +14,16 @@ export const addLlmAgentPolicies = (props: {
             actions: ["bedrock:InvokeModel*"],
             resources: [
                 `arn:aws:bedrock:${props.rootStack.region}:${props.rootStack.account}:inference-profile/*`,
+                `arn:aws:bedrock:${props.rootStack.region}::foundation-model/*`,
                 `arn:aws:bedrock:us-*::foundation-model/*`,
             ],
+        })
+    )
+
+    props.role.addToPrincipalPolicy(
+        new iam.PolicyStatement({
+            actions: ['aws-marketplace:ViewSubscriptions'],
+            resources: ['*'],
         })
     )
 

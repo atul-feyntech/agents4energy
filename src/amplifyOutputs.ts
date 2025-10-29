@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 interface AmplifyCustomOutputs {
   api_id?: string;
   maintenanceAgentId?: string;
@@ -15,16 +12,19 @@ interface AmplifyOutputs {
   custom?: AmplifyCustomOutputs;
 }
 
-const outputsPath = path.resolve(__dirname, '../amplify_outputs.json');
+const parseOutputsFromEnv = (): AmplifyOutputs => {
+  const serialized = process.env.NEXT_PUBLIC_AMPLIFY_OUTPUTS_JSON;
 
-let outputs: AmplifyOutputs = {};
-
-if (fs.existsSync(outputsPath)) {
-  try {
-    outputs = JSON.parse(fs.readFileSync(outputsPath, 'utf8')) as AmplifyOutputs;
-  } catch (e) {
-    console.warn('Failed to parse amplify_outputs.json:', e);
+  if (!serialized) {
+    return {};
   }
-}
 
-export default outputs;
+  try {
+    return JSON.parse(serialized) as AmplifyOutputs;
+  } catch (error) {
+    console.warn('Failed to parse NEXT_PUBLIC_AMPLIFY_OUTPUTS_JSON:', error);
+    return {};
+  }
+};
+
+export default parseOutputsFromEnv();
