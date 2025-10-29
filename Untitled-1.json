@@ -1,0 +1,12 @@
+
+    "Credentials": {
+        "AccessKeyId": "ASIA5ALXLQUWHVYOAIFC",
+        "SecretAccessKey": "EEtcxv9Cz1HTUKbM/Kdn2VnhePAkDOshhB4DzsNT",
+        "SessionToken": "IQoJb3JpZ2luX2VjEKT//////////wEaCmFwLXNvdXRoLTEiRjBEAiAakn9E3fFFLMugONmVG4sYMHNrEBLGPiAinssCY3v5qwIgVSs1emT3yQpTtEJq58qjXXSXRiqRC+ft/dllQBLBGm8q7gEIXRACGgw4OTQxNDAzODQ1NTYiDDtyepmfhr2v+DNK8irLAX6f9JBuQ423Lxj7VrgbeJ4cvyOraNyx1e980xleK6bXdtDmGDyZZsB5st0cA5K/BACfBqZICklWzr4m3jbBvk6zLqpIoaoy/IZcxg0I0WslbCgf6RamQtSgmusuXxhzoym/50Uh3CU5361Xg4j3vkF3YayvCisUTy/NF4316RKH4n4rv/N2gRPjPTpMpO6S6KdkbOoaulNTvvCKh6yEU/XvNWH9njfl6jCEu2R6bJjitiUK4pM7+zA+ThdNNwPg2MbOhApsMB4um5MVMLPM7ccGOpkB+6687EaOcD621zinw6icijaoH0kZQNkGGvy7UswUWK9j8tnYVC2ns7rZ1wEK6QO+Xbi6Qm1558fHhm9oW3p2MbWnhlybKGo+sonhZw4fIIV04lmYS1s/DUWR+WfDbXDgd5WWjDthejTF1gdmK/UWDsNO5FGqhv3JJraqYHnmoebLL05EbkZFcLBlniXWkk9mPqsPReYqYOx5",
+        "Expiration": "2025-10-24T12:42:43+00:00"
+    }
+}
+aws configure set aws_access_key_id     ASIA5ALXLQUWHVYOAIFC    --profile agents4energy-session
+aws configure set aws_secret_access_key EEtcxv9Cz1HTUKbM/Kdn2VnhePAkDOshhB4DzsNT --profile agents4energy-session
+aws configure set aws_session_token   IQoJb3JpZ2luX2VjEKT//////////wEaCmFwLXNvdXRoLTEiRjBEAiAakn9E3fFFLMugONmVG4sYMHNrEBLGPiAinssCY3v5qwIgVSs1emT3yQpTtEJq58qjXXSXRiqRC+ft/dllQBLBGm8q7gEIXRACGgw4OTQxNDAzODQ1NTYiDDtyepmfhr2v+DNK8irLAX6f9JBuQ423Lxj7VrgbeJ4cvyOraNyx1e980xleK6bXdtDmGDyZZsB5st0cA5K/BACfBqZICklWzr4m3jbBvk6zLqpIoaoy/IZcxg0I0WslbCgf6RamQtSgmusuXxhzoym/50Uh3CU5361Xg4j3vkF3YayvCisUTy/NF4316RKH4n4rv/N2gRPjPTpMpO6S6KdkbOoaulNTvvCKh6yEU/XvNWH9njfl6jCEu2R6bJjitiUK4pM7+zA+ThdNNwPg2MbOhApsMB4um5MVMLPM7ccGOpkB+6687EaOcD621zinw6icijaoH0kZQNkGGvy7UswUWK9j8tnYVC2ns7rZ1wEK6QO+Xbi6Qm1558fHhm9oW3p2MbWnhlybKGo+sonhZw4fIIV04lmYS1s/DUWR+WfDbXDgd5WWjDthejTF1gdmK/UWDsNO5FGqhv3JJraqYHnmoebLL05EbkZFcLBlniXWkk9mPqsPReYqYOx5            --profile agents4energy-session
+aws configure set region                ap-south-1                 --profile agents4energy-session
