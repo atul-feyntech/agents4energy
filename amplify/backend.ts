@@ -1,3 +1,8 @@
+// This file is the single entry point that tells Amplify Gen 2 which AWS resources to build.
+// Think of it as the “wiring diagram” for the entire backend: we create Cognito for auth,
+// AppSync for APIs, VPC networking, Bedrock agents, Lambdas, S3 buckets, and connect them all.
+// The code below deliberately spells out every dependency so CloudFormation can deploy safely.
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { Stack } from 'aws-cdk-lib';
@@ -36,12 +41,15 @@ import { cdkNagSupperssionsHandler } from './custom/cdkNagHandler';
 import { addLlmAgentPolicies } from './functions/utils/cdkUtils'
 import { petrophysicsAgentBuilder } from './agents/petrophysicsAgent/petrophysicsAgent';
 
+// Tags help us find all resources that belong to this solution across the AWS console.
 const resourceTags = {
   Project: 'agents-for-energy',
   Environment: 'dev',
   AgentsForEnergy: 'true'
 }
 
+// defineBackend() registers the high-level Amplify features (auth, data, functions, storage).
+// Amplify translates this into a root CloudFormation stack with nested stacks underneath.
 const backend = defineBackend({
   auth,
   data,
@@ -75,6 +83,8 @@ const bedrockAgentDataSource = backend.data.resources.graphqlApi.addHttpDataSour
   }
 );
 
+// The GraphQL API needs IAM policies that explicitly allow Bedrock runtime and agent calls.
+// Without these statements AppSync resolvers would fail with AccessDenied.
 bedrockRuntimeDataSource.grantPrincipal.addToPrincipalPolicy(
   new iam.PolicyStatement({
     resources: [
@@ -131,6 +141,7 @@ const networkingStack = backend.createStack('networkingStack')
 const rootStack = cdk.Stack.of(networkingStack).nestedStackParent
 if (!rootStack) throw new Error('Root stack not found')
 
+// Expose IDs of the key infrastructure so the frontend (and operators) can reference them later.
 backend.addOutput({
   custom: {
     api_id: backend.data.resources.graphqlApi.apiId,
@@ -138,6 +149,7 @@ backend.addOutput({
   },
 });
 
+// Create a VPC so every agent and database runs inside an isolated network with public+private subnets.
 const vpc = new ec2.Vpc(networkingStack, 'A4E-VPC', {
   ipAddresses: ec2.IpAddresses.cidr('10.0.0.0/16'),
   maxAzs: 3,
@@ -168,7 +180,7 @@ vpc.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY)
 
 function applyTagsToRootStack() {
   if (!rootStack) throw new Error('Root stack not found')
-  //Apply tags to all the nested stacks
+  // Apply tags to every nested stack so they inherit cost and project metadata.
   Object.entries(resourceTags).map(([key, value]) => {
     cdk.Tags.of(rootStack).add(key, value)
   })
@@ -180,6 +192,8 @@ applyTagsToRootStack()
 ///////////////////////////////////////////////////////////
 /////// Create the Production Agent Stack /////////////////
 ///////////////////////////////////////////////////////////
+// Everything below (stacks + builders) works the same way: we create a nested stack per agent,
+// deploy its Lambda functions, knowledge bases, queues, and return references (IDs, aliases, ARNs).
 const productionAgentStack = backend.createStack('prodAgentStack');
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -209,7 +223,7 @@ const {
   s3Bucket: backend.storage.resources.bucket,
 })
 
-// Custom resource Lambda to introduce a delay between when the PDF to Yaml function finishes deploying, and when the objects are uploaded.
+// Delay uploading large sample PDFs until the Lambdas + Step Functions that process them exist.
 const delayFunction = new lambda.Function(productionAgentStack, 'DelayFunction', {
   runtime: lambda.Runtime.NODEJS_18_X,
   handler: 'index.handler',
@@ -237,6 +251,7 @@ delayResource.node.addDependency(pdfProcessingQueue)
 delayResource.node.addDependency(wellFileDriveBucket)
 uploadToS3Deployment.node.addDependency(delayResource) //Don't deploy files until the resources handling uploads are deployed
 
+// Wire runtime environment variables so the production agent Lambda knows where data lives.
 backend.productionAgentFunction.addEnvironment('DATA_BUCKET_NAME', backend.storage.resources.bucket.bucketName)
 backend.productionAgentFunction.addEnvironment('AWS_KNOWLEDGE_BASE_ID', sqlTableDefBedrockKnowledgeBase.knowledgeBase.attrKnowledgeBaseId)
 backend.productionAgentFunction.addEnvironment('PETROLEUM_ENG_KNOWLEDGE_BASE_ID', petroleumEngineeringKnowledgeBase.knowledgeBaseId)
@@ -271,6 +286,7 @@ backend.productionAgentFunction.resources.lambda.addToRolePolicy(
 ///////////////////////////////////////////////////////////
 /////// Create the Maintenance Agent Stack /////////////////
 ///////////////////////////////////////////////////////////
+// Maintenance agent owns its own nested stack so it can scale independently and reuse shared assets.
 const maintenanceAgentStack = backend.createStack('maintAgentStack')
 const {defaultDatabaseName, maintenanceAgent, maintenanceAgentAlias} = maintenanceAgentBuilder(maintenanceAgentStack, {
   vpc: vpc,
@@ -288,6 +304,7 @@ backend.addOutput({
 ///////////////////////////////////////////////////////////
 /////// Create the Regulatory Agent Stack /////////////////
 ///////////////////////////////////////////////////////////
+// Regulatory agent packages compliance datasets and prompts in its own stack but still relies on shared VPC + bucket.
 const regulatoryAgentStack = backend.createStack('regAgentStack')
 const { regulatoryAgent, regulatoryAgentAlias, metric } = regulatoryAgentBuilder(regulatoryAgentStack, {
   vpc: vpc,
@@ -304,6 +321,7 @@ backend.addOutput({
 ///////////////////////////////////////////////////////////
 /////// Create the Petrophysics Agent Stack ///////////////
 ///////////////////////////////////////////////////////////
+// Petrophysics agent focuses on geological analysis; this nested stack wires the same shared infrastructure into its Lambdas.
 const petrophysicsAgentStack = backend.createStack('petroAgentStack')
 const { petrophysicsAgent, petrophysicsAgentAlias } = petrophysicsAgentBuilder(petrophysicsAgentStack, {
   vpc: vpc,
@@ -327,6 +345,7 @@ backend.addOutput({
 // Create a stack with the resources to configure the app
 const configuratorStack = backend.createStack('configuratorStack')
 
+// The configurator custom resource seeds AppSync schema, Cognito pre-sign-up rules, and database metadata.
 new AppConfigurator(configuratorStack, 'appConfigurator', {
   hydrocarbonProductionDb: hydrocarbonProductionDb,
   defaultProdDatabaseName: defaultProdDatabaseName,
